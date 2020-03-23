@@ -11,6 +11,8 @@ services:
           - APACHE_DOCUMENT_ROOT=/var/www/html/public
         volumes:
           - .:/var/www/html
+        networks:
+          - my-proxy-net
 
     loterioma_engineer_qa:
         build: .docker/phpqa
@@ -25,3 +27,10 @@ services:
         volumes:
           - ./src:/code
           - ./.docker/phpqa/results:/logs
+        networks:
+          - my-proxy-net
+
+networks:
+    my-proxy-net:
+        external: true
+        name: loterioma-net
