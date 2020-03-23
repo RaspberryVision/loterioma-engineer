@@ -1,0 +1,27 @@
+version: '3.5'
+services:
+    loterioma_engineer:
+        build: .docker/php
+        container_name: loterioma_engineer
+        stdin_open: true
+        tty: true
+        ports:
+          - 9906:80
+        environment:
+          - APACHE_DOCUMENT_ROOT=/var/www/html/public
+        volumes:
+          - .:/var/www/html
+
+    loterioma_engineer_qa:
+        build: .docker/phpqa
+        container_name: loterioma_engineer_qa
+        stdin_open: true
+        tty: true
+        environment:
+          - PHPQA_HOME_DIR=/phpqa
+          - PHPQA_CODE_DIR=${PHPQA_HOME_DIR}/code
+          - PHPQA_LOGS_DIR=${PHPQA_HOME_DIR}/logs
+          - PHPQA_TEST_DIR=${PHPQA_HOME_DIR}/code
+        volumes:
+          - ./src:/code
+          - ./.docker/phpqa/results:/logs
