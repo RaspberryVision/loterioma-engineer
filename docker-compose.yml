@@ -19,6 +19,8 @@ services:
         container_name: loterioma_engineer_qa
         stdin_open: true
         tty: true
+        depends_on:
+          - loterioma_engineer
         environment:
           - PHPQA_HOME_DIR=/phpqa
           - PHPQA_CODE_DIR=${PHPQA_HOME_DIR}/code
