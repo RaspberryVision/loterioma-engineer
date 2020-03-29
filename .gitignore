@@ -1,3 +1,10 @@
+###> idea files ###
+.idea
+###< idea files ###
+
+###> QA results ###
+.docker/phpqa/results
+###< QA results ###
 
 ###> symfony/framework-bundle ###
 /.env.local
