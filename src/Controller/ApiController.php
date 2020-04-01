@@ -23,7 +23,6 @@ class ApiController extends AbstractController
     public function report(Request $request, string $toolName): JsonResponse
     {
         $machine = $request->get('machine');
-        $build = $request->get('build');
         $component = $request->get('component');
 
         /** @var UploadedFile $reportFile */
@@ -34,7 +33,7 @@ class ApiController extends AbstractController
 
             try {
                 $reportFile->move(
-                    $this->getParameter('report_directory') . '/' . $machine . '/' . $build . '/' . $component,
+                    $this->getParameter('report_directory') . '/' . $machine . '/' . date('ddmmY_Hi') . '/' . $component,
                     $newFilename
                 );
             } catch (FileException $e) {

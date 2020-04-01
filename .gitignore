@@ -21,3 +21,7 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+###> report uploads ###
+public/uploads
+###< report uploads ###
