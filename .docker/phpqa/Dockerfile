@@ -1,1 +1,1 @@
-FROM raspberryvision/phpqa:0.1.3-stretch
+FROM raspberryvision/phpqa:0.3.5-stretch
