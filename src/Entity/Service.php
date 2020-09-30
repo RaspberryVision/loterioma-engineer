@@ -18,24 +18,43 @@ class Service
     private $id;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private $host;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $port;
 
     /**
+     * @var string|null
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * Service constructor.
+     * @param string $name
+     * @param string $host
+     * @param string|null $port
+     * @param string|null $description
+     */
+    public function __construct(string $name, string $host, ?string $port = null, ?string $description = null)
+    {
+        $this->name = $name;
+        $this->host = $host;
+        $this->port = $port;
+        $this->description = $description;
+    }
 
     public function getId(): ?int
     {
