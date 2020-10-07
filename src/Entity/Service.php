@@ -42,6 +42,11 @@ class Service
     private $description;
 
     /**
+     * @ORM\Column(type="smallint")
+     */
+    private $status;
+
+    /**
      * Service constructor.
      * @param string $name
      * @param string $host
@@ -105,6 +110,18 @@ class Service
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

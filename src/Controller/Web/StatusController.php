@@ -2,6 +2,7 @@
 
 namespace App\Controller\Web;
 
+use App\Entity\Service;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,19 +13,25 @@ class StatusController extends AbstractController
      */
     public function index()
     {
-        $host = 'loterioma_manager1';
-        $port = 80;
-        $waitTimeoutInSeconds = 1;
-        if($fp = fsockopen($host,$port,$errCode,$errStr,$waitTimeoutInSeconds)){
-            var_dump('works');
-        } else {
-            var_dump('no works');
-            // It didn't work
-        }
-        fclose($fp);
+        $services = $this->getDoctrine()->getRepository(Service::class)->findAll();
 
-        return $this->render('status/index.html.twig', [
-            'controller_name' => 'StatusController',
-        ]);
+        $results = [];
+        /** @var Service $service */
+        foreach ($services as $service) {
+            if ($fp = fsockopen($service->getHost(), $service->getPort(), $errCode, $errStr, 1)) {
+
+            } else {
+                var_dump('no works');
+                // It didn't work
+            }
+            fclose($fp);
+        }
+
+        return $this->render(
+            'status/index.html.twig',
+            [
+                'controller_name' => 'StatusController',
+            ]
+        );
     }
 }
