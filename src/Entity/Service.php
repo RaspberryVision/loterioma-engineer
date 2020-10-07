@@ -10,6 +10,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Service
 {
+    public const STATUS_ACTIVE = 1;
+    public const STATUS_NOT_AVAILABLE = 2;
+
+    /**
+     * Default webservices works on port 80.
+     */
+    public const PORT_DEFAULT = 80;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -53,12 +61,17 @@ class Service
      * @param string|null $port
      * @param string|null $description
      */
-    public function __construct(string $name, string $host, ?string $port = null, ?string $description = null)
-    {
+    public function __construct(
+        string $name,
+        string $host,
+        ?string $port = self::PORT_DEFAULT,
+        ?string $description = null
+    ) {
         $this->name = $name;
         $this->host = $host;
         $this->port = $port;
         $this->description = $description;
+        $this->status = self::STATUS_NOT_AVAILABLE;
     }
 
     public function getId(): ?int

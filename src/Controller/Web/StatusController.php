@@ -15,14 +15,12 @@ class StatusController extends AbstractController
     {
         $services = $this->getDoctrine()->getRepository(Service::class)->findAll();
 
-        $results = [];
         /** @var Service $service */
         foreach ($services as $service) {
             if ($fp = fsockopen($service->getHost(), $service->getPort(), $errCode, $errStr, 1)) {
-
+                $service->setStatus(1);
             } else {
-                var_dump('no works');
-                // It didn't work
+                $service->setStatus(2);
             }
             fclose($fp);
         }
@@ -30,7 +28,7 @@ class StatusController extends AbstractController
         return $this->render(
             'status/index.html.twig',
             [
-                'controller_name' => 'StatusController',
+                'services' => $services,
             ]
         );
     }
