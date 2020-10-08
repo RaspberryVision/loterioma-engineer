@@ -17,12 +17,16 @@ class StatusController extends AbstractController
 
         /** @var Service $service */
         foreach ($services as $service) {
-            if ($fp = fsockopen($service->getHost(), $service->getPort(), $errCode, $errStr, 1)) {
-                $service->setStatus(1);
-            } else {
-                $service->setStatus(2);
+            try {
+                if ($fp = fsockopen($service->getHost(), $service->getPort(), $errCode, $errStr, 1)) {
+                    $service->setStatus(1);
+                } else {
+                    $service->setStatus(2);
+                }
+                fclose($fp);
+            } catch (\Exception $exception) {
+                $service->setStatus(Service::STATUS_NOT_AVAILABLE);
             }
-            fclose($fp);
         }
 
         return $this->render(
