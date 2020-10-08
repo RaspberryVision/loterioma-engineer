@@ -5,7 +5,16 @@
 {% block body %}
     <ul>
         {% for service in services %}
-            <li>{{ service.name }} - {{ service.status }}</li>
+            <li>
+                <div>
+                    <h3>{{ service.name }}</h3> {{ service.getCurrentStatus().getState() }}
+                    <div>
+                        {% for status in service.statuses %}
+                            {{ status.getState() }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}
