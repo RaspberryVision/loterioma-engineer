@@ -40,6 +40,7 @@ class ServiceStatus
     public function __construct(int $state)
     {
         $this->state = $state;
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ServiceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,6 +52,11 @@ class Service
     private $description;
 
     /**
+     * @ORM\OneToMany(targetEntity=ServiceStatus::class, mappedBy="service", cascade={"PERSIST"})
+     */
+    private $statuses;
+
+    /**
      * Service constructor.
      * @param string $name
      * @param string $host
@@ -66,6 +73,7 @@ class Service
         $this->host = $host;
         $this->port = $port;
         $this->description = $description;
+        $this->statuses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -119,5 +127,46 @@ class Service
         $this->description = $description;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|ServiceStatus[]
+     */
+    public function getStatuses(): Collection
+    {
+        return $this->statuses;
+    }
+
+    public function addStatus(ServiceStatus $status): self
+    {
+        if (!$this->statuses->contains($status)) {
+            $this->statuses[] = $status;
+            $status->setService($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStatus(ServiceStatus $status): self
+    {
+        if ($this->statuses->contains($status)) {
+            $this->statuses->removeElement($status);
+            // set the owning side to null (unless already changed)
+            if ($status->getService() === $this) {
+                $status->setService(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get last (current) service status.
+     *
+     * @return ServiceStatus|null
+     */
+    public function getCurrentStatus()
+    {
+        return $this->statuses->last();
     }
 }
