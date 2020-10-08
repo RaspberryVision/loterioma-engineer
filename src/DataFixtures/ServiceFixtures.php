@@ -38,6 +38,13 @@ class ServiceFixtures extends Fixture
         $service = new Service('Infrastructure - PhpMyAdmin', 'loterioma_infrastructure_phpmyadmin');
         $manager->persist($service);
 
+        $service = new Service('Infrastructure - PhpMyAdmin', 'loterioma_infrastructure_phpmyadmin');
+        $manager->persist($service);
+
+        $service = new Service('Infrastructure - LocalStack', 'loterioma_infrastructure_aws', 4566);
+        $manager->persist($service);
+
+
         $manager->flush();
 
 
