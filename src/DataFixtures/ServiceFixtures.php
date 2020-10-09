@@ -22,6 +22,9 @@ class ServiceFixtures extends Fixture
         $service = new Service('Lobby Database', 'loterioma_lobby_db', 3306);
         $manager->persist($service);
 
+        $service = new Service('Core App', 'loterioma_core');
+        $manager->persist($service);
+
         $service = new Service('DataStore Db', 'db', 5432);
         $manager->persist($service);
 
