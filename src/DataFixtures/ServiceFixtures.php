@@ -28,6 +28,9 @@ class ServiceFixtures extends Fixture
         $service = new Service('Engine App', 'loterioma_engine');
         $manager->persist($service);
 
+        $service = new Service('Engine Dice', 'loterioma_dice_engine');
+        $manager->persist($service);
+
         $service = new Service('DataStore Db', 'db', 5432);
         $manager->persist($service);
 
