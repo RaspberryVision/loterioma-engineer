@@ -25,3 +25,8 @@
 ###> report uploads ###
 public/uploads
 ###< report uploads ###
+
+###> squizlabs/php_codesniffer ###
+/.phpcs-cache
+/phpcs.xml
+###< squizlabs/php_codesniffer ###

@@ -2,6 +2,9 @@
     "composer/package-versions-deprecated": {
         "version": "1.11.99"
     },
+    "composer/xdebug-handler": {
+        "version": "1.4.5"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -135,8 +138,20 @@
     "ocramius/proxy-manager": {
         "version": "2.8.0"
     },
+    "pdepend/pdepend": {
+        "version": "2.8.0"
+    },
     "php": {
         "version": "7.4"
+    },
+    "phploc/phploc": {
+        "version": "7.0.2"
+    },
+    "phpmd/phpmd": {
+        "version": "2.9.1"
+    },
+    "phpunit/php-timer": {
+        "version": "2.1.3"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -150,6 +165,12 @@
     "psr/log": {
         "version": "1.1.2"
     },
+    "sebastian/finder-facade": {
+        "version": "2.0.0"
+    },
+    "sebastian/version": {
+        "version": "3.0.2"
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -160,6 +181,18 @@
         },
         "files": [
             "config/packages/sensio_framework_extra.yaml"
+        ]
+    },
+    "squizlabs/php_codesniffer": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "0dc9cceda799fd3a08b96987e176a261028a3709"
+        },
+        "files": [
+            "phpcs.xml.dist"
         ]
     },
     "symfony/browser-kit": {
@@ -403,6 +436,18 @@
     },
     "symfony/yaml": {
         "version": "v5.0.5"
+    },
+    "theseer/directoryscanner": {
+        "version": "1.3.2"
+    },
+    "theseer/fdomdocument": {
+        "version": "1.6.6"
+    },
+    "theseer/fxsl": {
+        "version": "1.1.1"
+    },
+    "theseer/phpdox": {
+        "version": "0.12.0"
     },
     "twig/twig": {
         "version": "v3.0.3"
