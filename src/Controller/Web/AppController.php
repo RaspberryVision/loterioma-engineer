@@ -17,7 +17,7 @@ class AppController extends AbstractController
     public function index(ServiceChecker $serviceChecker)
     {
         return $this->render(
-            'app/index.html.twig',
+            'web/app/index.html.twig',
             [
                 'services' => $serviceChecker->getStatus(),
             ]

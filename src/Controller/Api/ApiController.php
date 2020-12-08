@@ -15,11 +15,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApiController extends AbstractController
 {
     /**
-     *
+     * @Route("/", name="api_index")
      */
     public function index()
     {
-
+        return $this->json([
+            'name' => 'Loterioma Engineer',
+            'slug' => 'loterioma_engineer',
+            'port' => '9902',
+            'time' => time()
+        ]);
     }
 
     /**
