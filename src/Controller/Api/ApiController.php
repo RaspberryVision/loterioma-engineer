@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -14,6 +14,14 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ApiController extends AbstractController
 {
+    /**
+     *
+     */
+    public function index()
+    {
+
+    }
+
     /**
      * @Route("/report/{toolName}", name="api_report_post", methods={"POST"})
      * @param Request $request
