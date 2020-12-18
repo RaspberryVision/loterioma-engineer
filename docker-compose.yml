@@ -5,6 +5,8 @@ services:
     container_name: loterioma_engineer
     stdin_open: true
     tty: true
+    links:
+      - loterioma_engineer_db
     ports:
       - 5902:80
     environment:
