@@ -3,18 +3,73 @@
 {% block title %}Hello StatusController!{% endblock %}
 
 {% block body %}
-    <ul>
-        {% for service in services %}
-            <li>
-                <div>
-                    <h3>{{ service.name }}</h3> {{ service.getCurrentStatus().getState() }}
-                    <div>
-                        {% for status in service.statuses %}
-                            {{ status.getState() }}
-                        {% endfor %}
+    <div class="container">
+        <ul>
+            {% for service in services %}
+                <li style="list-style: none">
+                    <div class="service-box">
+                        <h3>
+                            {{ service.name }}
+                            <span class="service-status {{ service.getCurrentStatus().getState() == '1' ? 'ok' : 'error' }}">
+                                {{ service.getCurrentStatus().getState() == '1' ? 'Working' : 'Unavailable' }}
+                            </span>
+                        </h3>
+                        <div class="history-bar">
+                            {% for status in service.statuses %}
+                                <div class="history-bar-item {{ status.getState() == '1' ? 'ok' : 'error' }}"></div>
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <style type="text/css">
+        .service-box {
+            border: 1px solid red;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            padding: 15px;
+        }
+
+        .history-bar {
+            width: 100%;
+            border: 1px solid green;
+            height: 25px;
+            overflow: hidden;
+        }
+
+        .service-status {
+            font-size: 14px;
+            font-weight: bold;
+            float: right;
+            padding: 5px 10px;
+            border-radius: 10px;
+            color: #fff;
+        }
+
+        .service-status.ok {
+            background: green;
+        }
+
+        .service-status.error {
+            background: red;
+        }
+
+        .history-bar-item {
+            width: 4%;
+            border-left: 1px solid #fff;
+            height: 25px;
+            float: left;
+        }
+
+        .history-bar-item.error {
+            background: red;
+        }
+
+        .history-bar-item.ok {
+            background: green;
+        }
+    </style>
 {% endblock %}
